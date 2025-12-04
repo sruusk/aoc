@@ -4,14 +4,14 @@ import 'package:aoc2025/io_utils.dart';
 Future<void> run(void Function() startTimer) async {
   final lines = await readLines('input/day02.txt');
 
+  startTimer();
+
   List<(int, int)> ranges = lines[0].split(',')
       .map((part) {
         var bounds = part.split('-').map(int.parse).toList();
         return (bounds[0], bounds[1]);
       })
       .toList();
-
-  startTimer();
 
   final results = await Future.wait(
     ranges.map((range) => Isolate.run(() => _processRange(range))),
