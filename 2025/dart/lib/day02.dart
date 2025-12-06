@@ -50,6 +50,7 @@ bool isInvalidId(String numStr) {
 
 bool isInvalidIdPart2(String numStr) {
   for (var i = 1; i <= numStr.length ~/ 2; i++) {
+    if(numStr.length % i != 0) continue;
     var subStr = numStr.substring(0, i);
     var matches = RegExp(subStr).allMatches(numStr).toList();
     if(numStr.length == matches.length * subStr.length) {
